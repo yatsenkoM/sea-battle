@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Sea Battle</string>
+    <string name="winnerTitle">Переможець</string>
+    <string name="returnMainActivityText">Повернутися до голованого меню</string>
+    <string name="winnerName">winner</string>
+    <string name="printYourName">Введіть своє ім\'я</string>
+    <string name="save">Зберегти</string>
+    <string name="player1">Кораблі першого гравця</string>
+    <string name="player2">Кораблі другого гравця</string>
+    <string name="resetInfo">Скинути налаштування</string>
+    <string name="saveShips">Зберегти конфігурацію кораблів</string>
+    <string name="firstPlayer">Перший гравець</string>
+    <string name="secondPlayer">Другий гравець</string>
+</resources>

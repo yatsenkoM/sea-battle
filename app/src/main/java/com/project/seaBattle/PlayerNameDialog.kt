@@ -20,7 +20,7 @@ class PlayerNameDialog : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val rootView = inflater.inflate(R.layout.dialog_player_name_layout, container, false)
 

@@ -1,11 +1,11 @@
 package com.project.seaBattle
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 
 class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +17,7 @@ class StartActivity : AppCompatActivity() {
         val resetInfoButton = findViewById<Button>(R.id.resetInfo)
         val gameInfoManager = GameInfoManager.getInstance()
         shipsForFirstPlayerButton.setOnClickListener {
-            if(gameInfoManager.leftShips.isNotEmpty()) {
+            if (gameInfoManager.leftShips.isNotEmpty()) {
                 showToast("Кораблі для першого гравця вже встановлені")
             } else {
                 val intent = Intent(this, SetLeftShipsActivity::class.java)
@@ -25,7 +25,7 @@ class StartActivity : AppCompatActivity() {
             }
         }
         shipsForSecondPlayerButton.setOnClickListener {
-            if(gameInfoManager.rightShips.isNotEmpty()) {
+            if (gameInfoManager.rightShips.isNotEmpty()) {
                 showToast("Кораблі для другого гравця вже встановлені")
             } else {
                 val intent = Intent(this, SetRightShipsActivity::class.java)
@@ -33,7 +33,7 @@ class StartActivity : AppCompatActivity() {
             }
         }
         startBattleButton.setOnClickListener {
-            if(gameInfoManager.leftShips.isNotEmpty() && gameInfoManager.rightShips.isNotEmpty()) {
+            if (gameInfoManager.leftShips.isNotEmpty() && gameInfoManager.rightShips.isNotEmpty()) {
                 val intent = Intent(this, BattleActivity::class.java)
                 startActivity(intent)
             } else {

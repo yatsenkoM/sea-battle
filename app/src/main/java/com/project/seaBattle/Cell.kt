@@ -32,9 +32,10 @@ class Cell(val imageRect: Rect, private val isHit: Boolean, context: Context) {
     }
 
     fun drawClick(canvas: Canvas) {
-        if(isHit)
+        if (isHit) {
             drawHit(canvas)
-        else
+        } else {
             drawMiss(canvas)
+        }
     }
 }

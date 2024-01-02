@@ -31,12 +31,12 @@ class SetLeftShipsActivity : AppCompatActivity() {
                 finish()
             }
         }
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                shipsSetter.areAllShipsInstalled()
-            }
+        val callback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    shipsSetter.areAllShipsInstalled()
+                }
         }
         onBackPressedDispatcher.addCallback(this, callback)
     }
-
 }

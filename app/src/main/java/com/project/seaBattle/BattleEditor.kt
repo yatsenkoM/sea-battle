@@ -25,7 +25,7 @@ class BattleEditor(context: Context, attrs: AttributeSet?) : View(context, attrs
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        for(cell in pressedCells) {
+        for (cell in pressedCells) {
             cell.drawClick(canvas)
         }
         currentPlayerBitmap?.let {
@@ -51,14 +51,14 @@ class BattleEditor(context: Context, attrs: AttributeSet?) : View(context, attrs
         currentGameBoard?.setBoardLimits(context)
         val cellSize = currentGameBoard?.cellSize
         val rightForRect = (rightBoard?.leftLimit!! - cellSize!!).toInt()
-        val topForRect = ((currentGameBoard?.bottomLimit!!/2) - (currentGameBoard?.topLimit!!/2)).toInt()
+        val topForRect = ((currentGameBoard?.bottomLimit!! / 2) - (currentGameBoard?.topLimit!! / 2)).toInt()
         val leftForRect = rightForRect.minus(cellSize)
         val bottomForRect = topForRect.plus(2 * cellSize)
         currentPlayerImgRect = Rect(leftForRect, topForRect, rightForRect, bottomForRect)
     }
 
     private fun setCurrentBoard() {
-        if(currentGameBoard == rightBoard) {
+        if (currentGameBoard == rightBoard) {
             currentGameBoard = leftBoard
             currentShipsForCheck = leftShips
             currentPlayerBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.left_plays)
@@ -79,12 +79,15 @@ class BattleEditor(context: Context, attrs: AttributeSet?) : View(context, attrs
         return false
     }
 
-    private fun getCellImageRect(x: Float, y: Float): Rect {
+    private fun getCellImageRect(
+        x: Float,
+        y: Float,
+    ): Rect {
         return Rect(
             x.toInt(),
             y.toInt(),
             (x + currentGameBoard!!.cellSize).toInt(),
-            (y + currentGameBoard!!.cellSize).toInt()
+            (y + currentGameBoard!!.cellSize).toInt(),
         )
     }
 
@@ -95,7 +98,7 @@ class BattleEditor(context: Context, attrs: AttributeSet?) : View(context, attrs
         }
     }
 
-    private fun determineTheLoser(){
+    private fun determineTheLoser() {
         currentGameBoard?.let { onGameOver?.invoke(it.side) }
     }
 
@@ -111,7 +114,10 @@ class BattleEditor(context: Context, attrs: AttributeSet?) : View(context, attrs
         return true
     }
 
-    private fun handleActionDown(x: Float, y: Float) {
+    private fun handleActionDown(
+        x: Float,
+        y: Float,
+    ) {
         if (currentGameBoard!!.checkPressureWithinBoard(x, y)) {
             val xCord = currentGameBoard!!.getXCellCordForShip(x)
             val yCord = currentGameBoard!!.getYCellCordForShip(y)

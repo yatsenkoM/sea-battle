@@ -41,14 +41,15 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
     }
 
     fun setStartPosition() {
-        if(shipPosition == "Vertical") setShipHorizontal()
+        if (shipPosition == "Vertical") setShipHorizontal()
         val width = cellSize * shipLength
-        imageRect = Rect(
-            startX,
-            startY,
-            startX + width,
-            startY + cellSize
-        )
+        imageRect =
+            Rect(
+                startX,
+                startY,
+                startX + width,
+                startY + cellSize,
+            )
     }
 
     private fun setShipVertical() {
@@ -70,18 +71,19 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
     }
 
     fun toggleShipOrientation() {
-        if(shipPosition == "Horizontal")
+        if (shipPosition == "Horizontal") {
             setShipVertical()
-        else
+        } else {
             setShipHorizontal()
+        }
     }
 
     private fun getUnavailableSpace(): Rect {
         return Rect(
-            imageRect!!.left - cellSize/2,
-            imageRect!!.top - cellSize/2,
+            imageRect!!.left - cellSize / 2,
+            imageRect!!.top - cellSize / 2,
             imageRect!!.right + cellSize,
-            imageRect!!.bottom + cellSize
+            imageRect!!.bottom + cellSize,
         )
     }
 
@@ -91,15 +93,18 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
 
     fun checkHits(cellImgRect: Rect): Boolean {
         val isHit = cellImgRect.intersect(imageRect!!)
-        if(isHit) remainingCells--
+        if (isHit) remainingCells--
         return isHit
     }
 
-    fun checkDestruction() : Boolean {
+    fun checkDestruction(): Boolean {
         return remainingCells == 0
     }
 
-    fun moveShipTo(x: Int, y: Int) {
+    fun moveShipTo(
+        x: Int,
+        y: Int,
+    ) {
         currentX = x
         currentY = y
     }
@@ -109,12 +114,12 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
         return if (shipPosition == "Horizontal") {
             Pair(
                 Rect(currentX - cellSize, currentY, currentX, currentY + cellSize),
-                Rect(currentX + width, currentY, currentX + width + cellSize, currentY + cellSize)
+                Rect(currentX + width, currentY, currentX + width + cellSize, currentY + cellSize),
             )
         } else {
             Pair(
                 Rect(currentX, currentY - cellSize, currentX + cellSize, currentY),
-                Rect(currentX, currentY + width, currentX + cellSize, currentY + width + cellSize)
+                Rect(currentX, currentY + width, currentX + cellSize, currentY + width + cellSize),
             )
         }
     }
@@ -122,13 +127,17 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
     private fun addCellsToList(
         cellsList: MutableList<Rect>,
         firstOutermostCell: Rect,
-        secondOutermostCell: Rect
+        secondOutermostCell: Rect,
     ) {
         cellsList.add(firstOutermostCell)
         cellsList.add(secondOutermostCell)
     }
 
-    private fun addSurroundingCells(cellsList: MutableList<Rect>, outermostCell: Rect, isHorizontal: Boolean) {
+    private fun addSurroundingCells(
+        cellsList: MutableList<Rect>,
+        outermostCell: Rect,
+        isHorizontal: Boolean,
+    ) {
         val left = outermostCell.left
         val right = outermostCell.right
         val top = outermostCell.top

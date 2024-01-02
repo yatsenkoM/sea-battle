@@ -6,7 +6,7 @@ import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 
-class SetRightShipsActivity: AppCompatActivity() {
+class SetRightShipsActivity : AppCompatActivity() {
     private val gameBoard = GameBoard("Right")
 
     @SuppressLint("InflateParams")
@@ -31,10 +31,11 @@ class SetRightShipsActivity: AppCompatActivity() {
                 finish()
             }
         }
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                shipsSetter.areAllShipsInstalled()
-            }
+        val callback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    shipsSetter.areAllShipsInstalled()
+                }
         }
         onBackPressedDispatcher.addCallback(this, callback)
     }

@@ -34,13 +34,14 @@ class BattleActivity : AppCompatActivity() {
         battleEditor.setRightBoard(rightGameBoard)
         battleEditor.setLeftBoard(leftGameBoard)
         battleEditor.setOnGameOver { loser ->
-            gameInfoManager.winnerName = if(loser == "Right") gameInfoManager.leftPlayerName else gameInfoManager.rightPlayerName
+            gameInfoManager.winnerName = if (loser == "Right") gameInfoManager.leftPlayerName else gameInfoManager.rightPlayerName
             gameInfoManager.winnerName?.let { showWinnerDialog(it) }
             gameInfoManager.resetAllInfo()
         }
-        val callback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-            }
+        val callback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                }
         }
         onBackPressedDispatcher.addCallback(this, callback)
     }

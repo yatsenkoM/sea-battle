@@ -9,8 +9,6 @@ import android.view.View
 import android.widget.Toast
 
 class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs) {
-
-    val ships = mutableListOf<Ship>()
     private var movingShip: Ship? = null
     private var touchX = 0f
     private var touchY = 0f
@@ -19,6 +17,7 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
     private var xUntilMoving = 0
     private var yUntilMoving = 0
     var gameBoard: GameBoard? = null
+    val ships = mutableListOf<Ship>()
 
     fun initializeShips() {
         gameBoard?.setBoardLimits(context)
@@ -29,14 +28,18 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
         addShips(R.drawable.ship_fourfold, 1, cellSize)
     }
 
-    private fun addShips(resourceId: Int, count: Int, cellSize: Int) {
+    private fun addShips(
+        resourceId: Int,
+        count: Int,
+        cellSize: Int,
+    ) {
         val startY = (gameBoard?.topLimit!! + 50f).toInt()
         val startX = gameBoard?.startXForPlacementShips
         var distanceMultiplier = 0
         repeat(count) {
             val newShip = Ship(context, resourceId, cellSize)
-            newShip.currentY = startY + ((4-count)*cellSize*2)
-            if (startX != null) newShip.currentX = startX + distanceMultiplier*cellSize*(7-count)
+            newShip.currentY = startY + ((4 - count) * cellSize * 2)
+            if (startX != null) newShip.currentX = startX + distanceMultiplier * cellSize * (7 - count)
             newShip.startX = newShip.currentX
             newShip.startY = newShip.currentY
             newShip.setStartPosition()
@@ -60,7 +63,7 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
 
     fun areAllShipsInstalled(): Boolean {
         for (ship in ships) {
-            if(ship.imageRect?.let { gameBoard?.checkImgRectWithinBoard(it) } != true) {
+            if (ship.imageRect?.let { gameBoard?.checkImgRectWithinBoard(it) } != true) {
                 Toast.makeText(context, "Не всі кораблі встановлені", Toast.LENGTH_SHORT).show()
                 return false
             }
@@ -68,11 +71,15 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
         return true
     }
 
-    private fun handleShipMovement(ship: Ship, touchX: Float, touchY: Float) {
+    private fun handleShipMovement(
+        ship: Ship,
+        touchX: Float,
+        touchY: Float,
+    ) {
         val displacement = gameBoard?.getShipDisplacement(touchX, touchY, ship.shipLength, ship.shipPosition)
         ship.currentX = gameBoard?.getXCellCordForShip(touchX)?.toInt()!!
         ship.currentY = gameBoard?.getYCellCordForShip(touchY)?.toInt()!!
-        if(ship.shipPosition == "Horizontal") {
+        if (ship.shipPosition == "Horizontal") {
             ship.currentX -= displacement!!.toInt()
         } else {
             ship.currentY -= displacement!!.toInt()
@@ -96,7 +103,6 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
     override fun onTouchEvent(event: MotionEvent): Boolean {
         touchX = event.x
         touchY = event.y
-
         when (event.action) {
             MotionEvent.ACTION_DOWN -> {
                 shipCapsizes = true
@@ -118,22 +124,22 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
                 movingShip?.let {
                     val deltaX = touchX.toInt() - it.currentX
                     val deltaY = touchY.toInt() - it.currentY
-                    val width = if(it.shipPosition == "Horizontal") cellSize * it.shipLength else cellSize
-                    val height = if(it.shipPosition == "Horizontal") cellSize else cellSize * it.shipLength
+                    val width = if (it.shipPosition == "Horizontal") cellSize * it.shipLength else cellSize
+                    val height = if (it.shipPosition == "Horizontal") cellSize else cellSize * it.shipLength
                     it.currentX += deltaX
                     it.currentY += deltaY
                     it.imageRect!!.set(
                         it.currentX,
                         it.currentY,
                         it.currentX + width,
-                        it.currentY + height
+                        it.currentY + height,
                     )
                 }
                 invalidate()
             }
 
             MotionEvent.ACTION_UP -> {
-                if(gameBoard!!.checkPressureWithinBoard(touchX, touchY)) {
+                if (gameBoard!!.checkPressureWithinBoard(touchX, touchY)) {
                     movingShip?.let {
                         if (!checkPossibilityInstallingShip()) {
                             it.moveShipTo(xUntilMoving, yUntilMoving)

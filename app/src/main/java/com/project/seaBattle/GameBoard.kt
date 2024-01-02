@@ -41,7 +41,11 @@ class GameBoard(val side: String) {
         return screenHeight * (1 - 2 * indentFromTopPercentage) - screenHeight * indentFromTopPercentage
     }
 
-    private fun setLimitsAndStartX(centerInWidth: Float, boardSize: Float, screenWidth: Float) {
+    private fun setLimitsAndStartX(
+        centerInWidth: Float,
+        boardSize: Float,
+        screenWidth: Float,
+    ) {
         val indentBoardFromCenterPercentage = 0.05f
         if (side == "Right") {
             leftLimit = centerInWidth + screenWidth * indentBoardFromCenterPercentage
@@ -83,7 +87,10 @@ class GameBoard(val side: String) {
         horizontalLines.add(bottomLimit)
     }
 
-    fun checkPressureWithinBoard(x: Float, y: Float): Boolean {
+    fun checkPressureWithinBoard(
+        x: Float,
+        y: Float,
+    ): Boolean {
         return (x in leftLimit..rightLimit && y in topLimit..bottomLimit)
     }
 
@@ -92,9 +99,12 @@ class GameBoard(val side: String) {
         return cellImgRect.intersect((boardRect))
     }
 
-    fun drawBoard(canvas: Canvas, paint: Paint) {
-        for(line in verticalLines) canvas.drawLine(line, topLimit, line, bottomLimit, paint)
-        for(line in horizontalLines) canvas.drawLine(leftLimit, line, rightLimit, line, paint)
+    fun drawBoard(
+        canvas: Canvas,
+        paint: Paint,
+    ) {
+        for (line in verticalLines) canvas.drawLine(line, topLimit, line, bottomLimit, paint)
+        for (line in horizontalLines) canvas.drawLine(leftLimit, line, rightLimit, line, paint)
         lettersBitmap?.let {
             lettersImgRect?.let { rect ->
                 canvas.drawBitmap(it, null, rect, null)
@@ -117,14 +127,19 @@ class GameBoard(val side: String) {
         return lowerHorizontalLineOfCell?.minus(cellSize)
     }
 
-    fun getShipDisplacement(x: Float, y: Float, shipLength: Int, shipPosition: String): Float {
+    fun getShipDisplacement(
+        x: Float,
+        y: Float,
+        shipLength: Int,
+        shipPosition: String,
+    ): Float {
         val permissibleLine: Float
         var shipDisplacement = 0f
-        val linesForCheck = if(shipPosition == "Horizontal") verticalLines else horizontalLines
+        val linesForCheck = if (shipPosition == "Horizontal") verticalLines else horizontalLines
         val numberPermissibleLine = linesForCheck.size - shipLength
         permissibleLine = linesForCheck[numberPermissibleLine]
-        val cellCord = if(shipPosition == "Horizontal") getXCellCordForShip(x) else getYCellCordForShip(y)
-        if(cellCord!! - permissibleLine > 0) shipDisplacement = cellCord - permissibleLine + cellSize
+        val cellCord = if (shipPosition == "Horizontal") getXCellCordForShip(x) else getYCellCordForShip(y)
+        if (cellCord!! - permissibleLine > 0) shipDisplacement = cellCord - permissibleLine + cellSize
         return shipDisplacement
     }
 }

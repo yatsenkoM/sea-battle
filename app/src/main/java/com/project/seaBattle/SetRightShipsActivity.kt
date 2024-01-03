@@ -22,7 +22,7 @@ class SetRightShipsActivity : AppCompatActivity() {
         val drawingBoard = findViewById<DrawingBoard>(R.id.drawingBoard)
         val shipsSetter = findViewById<ShipsSetter>(R.id.shipsSetter)
         val shipsInstalledButton = findViewById<Button>(R.id.shipsInstalled)
-        drawingBoard.setRightBoard(gameBoard)
+        drawingBoard.setBoard(gameBoard)
         shipsSetter.gameBoard = gameBoard
         shipsSetter.initializeShips()
         shipsInstalledButton.setOnClickListener {

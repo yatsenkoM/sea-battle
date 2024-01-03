@@ -24,8 +24,8 @@ class BattleActivity : AppCompatActivity() {
         val battleEditor = findViewById<BattleEditor>(R.id.battleEditor)
         val firstPlayerName = findViewById<TextView>(R.id.firstPlayerName)
         val secondPlayerName = findViewById<TextView>(R.id.secondPlayerName)
-        drawingBoard.setRightBoard(rightGameBoard)
-        drawingBoard.setLeftBoard(leftGameBoard)
+        drawingBoard.setBoard(rightGameBoard)
+        drawingBoard.setBoard(leftGameBoard)
         val gameInfoManager = GameInfoManager.getInstance()
         firstPlayerName.text = gameInfoManager.leftPlayerName
         secondPlayerName.text = gameInfoManager.rightPlayerName

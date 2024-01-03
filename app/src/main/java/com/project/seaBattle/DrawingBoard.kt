@@ -19,12 +19,12 @@ class DrawingBoard(context: Context, attrs: AttributeSet?) : View(context, attrs
         paint.isAntiAlias = true
     }
 
-    fun setRightBoard(board: GameBoard) {
-        rightBoard = board
-    }
-
-    fun setLeftBoard(board: GameBoard) {
-        leftBoard = board
+    fun setBoard(board: GameBoard) {
+        if (board.side == "Right") {
+            rightBoard = board
+        } else {
+            leftBoard = board
+        }
     }
 
     override fun onDraw(canvas: Canvas) {

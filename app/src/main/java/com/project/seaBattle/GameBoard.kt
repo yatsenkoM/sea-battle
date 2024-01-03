@@ -7,7 +7,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
 
-class GameBoard(val side: String) {
+class GameBoard(val side: BoardSide) {
     var leftLimit: Float = 0.0f
     var topLimit: Float = 0.0f
     var cellSize: Int = 0
@@ -47,7 +47,7 @@ class GameBoard(val side: String) {
         screenWidth: Float,
     ) {
         val indentBoardFromCenterPercentage = 0.05f
-        if (side == "Right") {
+        if (side == BoardSide.RIGHT) {
             leftLimit = centerInWidth + screenWidth * indentBoardFromCenterPercentage
             startXForPlacementShips = (centerInWidth - screenWidth * indentBoardFromCenterPercentage - boardSize).toInt()
         } else {
@@ -131,14 +131,14 @@ class GameBoard(val side: String) {
         x: Float,
         y: Float,
         shipLength: Int,
-        shipPosition: String,
+        shipPosition: ShipPosition,
     ): Float {
         val permissibleLine: Float
         var shipDisplacement = 0f
-        val linesForCheck = if (shipPosition == "Horizontal") verticalLines else horizontalLines
+        val linesForCheck = if (shipPosition == ShipPosition.HORIZONTAL) verticalLines else horizontalLines
         val numberPermissibleLine = linesForCheck.size - shipLength
         permissibleLine = linesForCheck[numberPermissibleLine]
-        val cellCord = if (shipPosition == "Horizontal") getXCellCordForShip(x) else getYCellCordForShip(y)
+        val cellCord = if (shipPosition == ShipPosition.HORIZONTAL) getXCellCordForShip(x) else getYCellCordForShip(y)
         if (cellCord!! - permissibleLine > 0) shipDisplacement = cellCord - permissibleLine + cellSize
         return shipDisplacement
     }

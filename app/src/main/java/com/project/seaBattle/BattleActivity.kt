@@ -13,8 +13,8 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 
 class BattleActivity : AppCompatActivity() {
-    private val leftGameBoard = GameBoard("Left")
-    private val rightGameBoard = GameBoard("Right")
+    private val leftGameBoard = GameBoard(BoardSide.LEFT)
+    private val rightGameBoard = GameBoard(BoardSide.RIGHT)
 
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +34,7 @@ class BattleActivity : AppCompatActivity() {
         battleEditor.setRightBoard(rightGameBoard)
         battleEditor.setLeftBoard(leftGameBoard)
         battleEditor.setOnGameOver { loser ->
-            gameInfoManager.winnerName = if (loser == "Right") gameInfoManager.leftPlayerName else gameInfoManager.rightPlayerName
+            gameInfoManager.winnerName = if (loser == BoardSide.RIGHT) gameInfoManager.leftPlayerName else gameInfoManager.rightPlayerName
             gameInfoManager.winnerName?.let { showWinnerDialog(it) }
             gameInfoManager.resetAllInfo()
         }

@@ -21,7 +21,7 @@ class BattleEditor(context: Context, attrs: AttributeSet?) : View(context, attrs
     private var lastDamagedShip: Ship? = null
     private var currentPlayerBitmap: Bitmap? = null
     private var currentPlayerImgRect: Rect? = null
-    private var onGameOver: ((loser: String) -> Unit)? = null
+    private var onGameOver: ((loser: BoardSide) -> Unit)? = null
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -102,7 +102,7 @@ class BattleEditor(context: Context, attrs: AttributeSet?) : View(context, attrs
         currentGameBoard?.let { onGameOver?.invoke(it.side) }
     }
 
-    fun setOnGameOver(listener: (winner: String) -> Unit) {
+    fun setOnGameOver(listener: (winner: BoardSide) -> Unit) {
         onGameOver = listener
     }
 

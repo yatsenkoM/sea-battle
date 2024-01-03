@@ -20,7 +20,7 @@ class DrawingBoard(context: Context, attrs: AttributeSet?) : View(context, attrs
     }
 
     fun setBoard(board: GameBoard) {
-        if (board.side == "Right") {
+        if (board.side == BoardSide.RIGHT) {
             rightBoard = board
         } else {
             leftBoard = board

@@ -7,7 +7,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 
 class SetRightShipsActivity : AppCompatActivity() {
-    private val gameBoard = GameBoard("Right")
+    private val gameBoard = GameBoard(BoardSide.RIGHT)
 
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {

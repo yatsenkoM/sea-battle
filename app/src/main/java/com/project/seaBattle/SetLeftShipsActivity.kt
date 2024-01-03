@@ -26,7 +26,7 @@ class SetLeftShipsActivity : AppCompatActivity() {
         shipsSetter.gameBoard = gameBoard
         shipsSetter.initializeShips()
         shipsInstalledButton.setOnClickListener {
-            if(shipsSetter.areAllShipsInstalled()) {
+            if (shipsSetter.areAllShipsInstalled()) {
                 gameInfoManager.addLeftShips(shipsSetter.ships)
                 finish()
             }
@@ -36,7 +36,7 @@ class SetLeftShipsActivity : AppCompatActivity() {
                 override fun handleOnBackPressed() {
                     shipsSetter.areAllShipsInstalled()
                 }
-        }
+            }
         onBackPressedDispatcher.addCallback(this, callback)
     }
 }

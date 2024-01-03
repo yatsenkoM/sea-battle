@@ -42,7 +42,7 @@ class BattleActivity : AppCompatActivity() {
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                 }
-        }
+            }
         onBackPressedDispatcher.addCallback(this, callback)
     }
 
@@ -52,9 +52,9 @@ class BattleActivity : AppCompatActivity() {
         dialog.setCancelable(false)
         dialog.setContentView(R.layout.dialog_winner_layout)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        val winner : TextView = dialog.findViewById(R.id.winner)
+        val winner: TextView = dialog.findViewById(R.id.winner)
         winner.text = winnerName
-        val returnStartActivityButton : Button = dialog.findViewById(R.id.returnStartActivity)
+        val returnStartActivityButton: Button = dialog.findViewById(R.id.returnStartActivity)
         returnStartActivityButton.setOnClickListener {
             val intent = Intent(this, StartActivity::class.java)
             startActivity(intent)

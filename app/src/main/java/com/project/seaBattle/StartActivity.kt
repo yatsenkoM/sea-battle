@@ -20,7 +20,8 @@ class StartActivity : AppCompatActivity() {
             if (gameInfoManager.leftShips.isNotEmpty()) {
                 showToast("Кораблі для першого гравця вже встановлені")
             } else {
-                val intent = Intent(this, SetLeftShipsActivity::class.java)
+                val intent = Intent(this, SetShipsActivity::class.java)
+                intent.putExtra("SIDE", BoardSide.LEFT.name)
                 startActivity(intent)
             }
         }
@@ -28,7 +29,8 @@ class StartActivity : AppCompatActivity() {
             if (gameInfoManager.rightShips.isNotEmpty()) {
                 showToast("Кораблі для другого гравця вже встановлені")
             } else {
-                val intent = Intent(this, SetRightShipsActivity::class.java)
+                val intent = Intent(this, SetShipsActivity::class.java)
+                intent.putExtra("SIDE", BoardSide.RIGHT.name)
                 startActivity(intent)
             }
         }

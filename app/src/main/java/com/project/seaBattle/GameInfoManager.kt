@@ -7,12 +7,26 @@ class GameInfoManager private constructor() {
     var rightPlayerName: String? = null
     var winnerName: String? = null
 
-    fun addRightShips(ships: MutableList<Ship>) {
-        rightShips.addAll(ships)
+    fun addShips(
+        ships: MutableList<Ship>,
+        side: BoardSide,
+    ) {
+        if (side == BoardSide.RIGHT) {
+            rightShips.addAll(ships)
+        } else {
+            leftShips.addAll(ships)
+        }
     }
 
-    fun addLeftShips(ships: MutableList<Ship>) {
-        leftShips.addAll(ships)
+    fun setPlayerName(
+        name: String,
+        side: BoardSide,
+    ) {
+        if (side == BoardSide.RIGHT) {
+            rightPlayerName = name
+        } else {
+            leftPlayerName = name
+        }
     }
 
     fun resetAllInfo() {

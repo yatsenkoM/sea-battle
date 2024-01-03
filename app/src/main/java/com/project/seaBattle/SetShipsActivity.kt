@@ -6,28 +6,29 @@ import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 
-class SetRightShipsActivity : AppCompatActivity() {
-    private val gameBoard = GameBoard(BoardSide.RIGHT)
-
+class SetShipsActivity : AppCompatActivity() {
     @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_set_right_ships)
-        val playerNameDialog = PlayerNameDialog()
-        playerNameDialog.show(supportFragmentManager, "PlayerNameDialog")
+        setContentView(R.layout.activity_set_ships)
+        val boardSideName = intent.getStringExtra("SIDE")
+        val boardSide = boardSideName?.let { BoardSide.valueOf(it) }
+        val gameBoard = boardSide?.let { GameBoard(it) }
         val gameInfoManager = GameInfoManager.getInstance()
-        playerNameDialog.setOnNameEntered { name ->
-            gameInfoManager.rightPlayerName = name
-        }
+        val playerNameDialog = PlayerNameDialog()
         val drawingBoard = findViewById<DrawingBoard>(R.id.drawingBoard)
         val shipsSetter = findViewById<ShipsSetter>(R.id.shipsSetter)
         val shipsInstalledButton = findViewById<Button>(R.id.shipsInstalled)
-        drawingBoard.setBoard(gameBoard)
+        playerNameDialog.show(supportFragmentManager, "PlayerNameDialog")
+        playerNameDialog.setOnNameEntered { name ->
+            gameInfoManager.setPlayerName(name, boardSide!!)
+        }
+        drawingBoard.setBoard(gameBoard!!)
         shipsSetter.gameBoard = gameBoard
         shipsSetter.initializeShips()
         shipsInstalledButton.setOnClickListener {
             if (shipsSetter.areAllShipsInstalled()) {
-                gameInfoManager.addRightShips(shipsSetter.ships)
+                gameInfoManager.addShips(shipsSetter.ships, boardSide)
                 finish()
             }
         }

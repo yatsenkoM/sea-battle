@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#A8BEFF"
-    tools:context=".SetRightShipsActivity">
+    tools:context=".SetLeftShipsActivity">
 
     <com.project.seaBattle.DrawingBoard
         android:id="@+id/drawingBoard"
@@ -28,7 +28,8 @@
         android:backgroundTint="#448AFF"
         android:text="@string/saveShips"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/drawingBoard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints">
     </Button>
 

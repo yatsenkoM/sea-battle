@@ -1,6 +1,5 @@
 package com.project.seaBattle
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -13,20 +12,28 @@ import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 
 class BattleActivity : AppCompatActivity() {
+    private lateinit var drawingBoard: DrawingBoard
+    private lateinit var battleEditor: BattleEditor
+    private lateinit var firstPlayerName: TextView
+    private lateinit var secondPlayerName: TextView
     private val leftGameBoard = GameBoard(BoardSide.LEFT)
     private val rightGameBoard = GameBoard(BoardSide.RIGHT)
 
-    @SuppressLint("InflateParams")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_battle)
-        val drawingBoard = findViewById<DrawingBoard>(R.id.drawingBoard)
-        val battleEditor = findViewById<BattleEditor>(R.id.battleEditor)
-        val firstPlayerName = findViewById<TextView>(R.id.firstPlayerName)
-        val secondPlayerName = findViewById<TextView>(R.id.secondPlayerName)
+        drawingBoard = findViewById(R.id.drawingBoard)
+        battleEditor = findViewById(R.id.battleEditor)
+        firstPlayerName = findViewById(R.id.firstPlayerName)
+        secondPlayerName = findViewById(R.id.secondPlayerName)
+        setupGame()
+        setupOnBackPressedCallback()
+    }
+
+    private fun setupGame() {
+        val gameInfoManager = GameInfoManager.getInstance()
         drawingBoard.setBoard(rightGameBoard)
         drawingBoard.setBoard(leftGameBoard)
-        val gameInfoManager = GameInfoManager.getInstance()
         firstPlayerName.text = gameInfoManager.leftPlayerName
         secondPlayerName.text = gameInfoManager.rightPlayerName
         battleEditor.leftShips = gameInfoManager.leftShips
@@ -38,6 +45,9 @@ class BattleActivity : AppCompatActivity() {
             gameInfoManager.winnerName?.let { showWinnerDialog(it) }
             gameInfoManager.resetAllInfo()
         }
+    }
+
+    private fun setupOnBackPressedCallback() {
         val callback =
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {

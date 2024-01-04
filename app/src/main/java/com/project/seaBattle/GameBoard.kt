@@ -131,14 +131,14 @@ class GameBoard(val side: BoardSide) {
         x: Float,
         y: Float,
         shipLength: Int,
-        shipPosition: ShipPosition,
+        shipPosition: ShipOrientation,
     ): Float {
         val permissibleLine: Float
         var shipDisplacement = 0f
-        val linesForCheck = if (shipPosition == ShipPosition.HORIZONTAL) verticalLines else horizontalLines
+        val linesForCheck = if (shipPosition == ShipOrientation.HORIZONTAL) verticalLines else horizontalLines
         val numberPermissibleLine = linesForCheck.size - shipLength
         permissibleLine = linesForCheck[numberPermissibleLine]
-        val cellCord = if (shipPosition == ShipPosition.HORIZONTAL) getXCellCordForShip(x) else getYCellCordForShip(y)
+        val cellCord = if (shipPosition == ShipOrientation.HORIZONTAL) getXCellCordForShip(x) else getYCellCordForShip(y)
         if (cellCord!! - permissibleLine > 0) shipDisplacement = cellCord - permissibleLine + cellSize
         return shipDisplacement
     }

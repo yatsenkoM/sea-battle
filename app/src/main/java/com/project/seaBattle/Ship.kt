@@ -16,7 +16,7 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
     var imageRect: Rect? = null
     private var constantForShipSize: Float = 0.0f
     var shipLength: Int = 0
-    var shipPosition: ShipPosition = ShipPosition.HORIZONTAL
+    var shipPosition: ShipOrientation = ShipOrientation.HORIZONTAL
     private var remainingCells: Int = 0
 
     init {
@@ -41,7 +41,7 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
     }
 
     fun setStartPosition() {
-        if (shipPosition == ShipPosition.VERTICAL) setShipHorizontal()
+        if (shipPosition == ShipOrientation.VERTICAL) setShipHorizontal()
         val width = cellSize * shipLength
         imageRect =
             Rect(
@@ -53,7 +53,7 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
     }
 
     private fun setShipVertical() {
-        shipPosition = ShipPosition.VERTICAL
+        shipPosition = ShipOrientation.VERTICAL
         bitmap?.let {
             val matrix = Matrix()
             matrix.postRotate(90f)
@@ -62,7 +62,7 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
     }
 
     private fun setShipHorizontal() {
-        shipPosition = ShipPosition.HORIZONTAL
+        shipPosition = ShipOrientation.HORIZONTAL
         bitmap?.let {
             val matrix = Matrix()
             matrix.postRotate(-90f)
@@ -71,7 +71,7 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
     }
 
     fun toggleShipOrientation() {
-        if (shipPosition == ShipPosition.HORIZONTAL) {
+        if (shipPosition == ShipOrientation.HORIZONTAL) {
             setShipVertical()
         } else {
             setShipHorizontal()
@@ -111,7 +111,7 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
 
     private fun calculateOutermostCells(): Pair<Rect, Rect> {
         val width = shipLength * cellSize
-        return if (shipPosition == ShipPosition.HORIZONTAL) {
+        return if (shipPosition == ShipOrientation.HORIZONTAL) {
             Pair(
                 Rect(currentX - cellSize, currentY, currentX, currentY + cellSize),
                 Rect(currentX + width, currentY, currentX + width + cellSize, currentY + cellSize),
@@ -161,7 +161,7 @@ class Ship(private val context: Context, resourceId: Int, private val cellSize: 
         val surroundingCells = mutableListOf<Rect>()
         val (firstOutermostCell, secondOutermostCell) = calculateOutermostCells()
         addCellsToList(surroundingCells, firstOutermostCell, secondOutermostCell)
-        addSurroundingCells(surroundingCells, firstOutermostCell, shipPosition == ShipPosition.HORIZONTAL)
+        addSurroundingCells(surroundingCells, firstOutermostCell, shipPosition == ShipOrientation.HORIZONTAL)
         return surroundingCells
     }
 }

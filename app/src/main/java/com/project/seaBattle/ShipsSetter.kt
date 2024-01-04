@@ -77,7 +77,7 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
         val displacement = gameBoard?.getShipDisplacement(touchX, touchY, ship.shipLength, ship.shipPosition)
         ship.currentX = gameBoard?.getXCellCordForShip(touchX)?.toInt()!!
         ship.currentY = gameBoard?.getYCellCordForShip(touchY)?.toInt()!!
-        if (ship.shipPosition == ShipPosition.HORIZONTAL) {
+        if (ship.shipPosition == ShipOrientation.HORIZONTAL) {
             ship.currentX -= displacement!!.toInt()
         } else {
             ship.currentY -= displacement!!.toInt()
@@ -85,8 +85,8 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
     }
 
     private fun updateImageRect(ship: Ship) {
-        val width = if (ship.shipPosition == ShipPosition.HORIZONTAL) cellSize * ship.shipLength else cellSize
-        val height = if (ship.shipPosition == ShipPosition.HORIZONTAL) cellSize else cellSize * ship.shipLength
+        val width = if (ship.shipPosition == ShipOrientation.HORIZONTAL) cellSize * ship.shipLength else cellSize
+        val height = if (ship.shipPosition == ShipOrientation.HORIZONTAL) cellSize else cellSize * ship.shipLength
         ship.imageRect?.set(ship.currentX, ship.currentY, ship.currentX + width, ship.currentY + height)
     }
 
@@ -122,8 +122,8 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
                 movingShip?.let {
                     val deltaX = touchX.toInt() - it.currentX
                     val deltaY = touchY.toInt() - it.currentY
-                    val width = if (it.shipPosition == ShipPosition.HORIZONTAL) cellSize * it.shipLength else cellSize
-                    val height = if (it.shipPosition == ShipPosition.HORIZONTAL) cellSize else cellSize * it.shipLength
+                    val width = if (it.shipPosition == ShipOrientation.HORIZONTAL) cellSize * it.shipLength else cellSize
+                    val height = if (it.shipPosition == ShipOrientation.HORIZONTAL) cellSize else cellSize * it.shipLength
                     it.currentX += deltaX
                     it.currentY += deltaY
                     it.imageRect!!.set(

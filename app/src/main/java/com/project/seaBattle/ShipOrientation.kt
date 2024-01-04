@@ -1,6 +1,6 @@
 package com.project.seaBattle
 
-enum class ShipPosition {
+enum class ShipOrientation {
     HORIZONTAL,
     VERTICAL,
 }

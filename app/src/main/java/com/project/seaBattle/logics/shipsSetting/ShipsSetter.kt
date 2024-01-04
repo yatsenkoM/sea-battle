@@ -1,4 +1,4 @@
-package com.project.seaBattle
+package com.project.seaBattle.logics.shipsSetting
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,6 +6,10 @@ import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import com.project.seaBattle.R
+import com.project.seaBattle.logics.board.GameBoard
+import com.project.seaBattle.logics.ship.Ship
+import com.project.seaBattle.logics.ship.ShipOrientation
 
 class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     private var movingShip: Ship? = null

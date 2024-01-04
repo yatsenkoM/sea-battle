@@ -1,4 +1,7 @@
-package com.project.seaBattle
+package com.project.seaBattle.logics.shipsSetting
+
+import com.project.seaBattle.logics.board.BoardSide
+import com.project.seaBattle.logics.ship.Ship
 
 class GameInfoManager private constructor() {
     val rightShips: MutableList<Ship> = mutableListOf()

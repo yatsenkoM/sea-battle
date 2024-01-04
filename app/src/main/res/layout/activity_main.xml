@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#A8BEFF"
     android:orientation="horizontal"
-    tools:context=".StartActivity">
+    tools:context=".activities.StartActivity">
 
     <ImageButton
         android:id="@+id/startButton"

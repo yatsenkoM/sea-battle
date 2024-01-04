@@ -1,4 +1,4 @@
-package com.project.seaBattle
+package com.project.seaBattle.dialogs
 
 import android.app.Dialog
 import android.graphics.Color

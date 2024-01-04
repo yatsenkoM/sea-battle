@@ -1,4 +1,4 @@
-package com.project.seaBattle
+package com.project.seaBattle.logics.ship
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Matrix
 import android.graphics.Rect
+import com.project.seaBattle.R
 
 class Ship(private val context: Context, resourceId: Int, private val cellSize: Int) {
     private var bitmap: Bitmap? = null

@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#A8BEFF"
-    tools:context=".SetShipsActivity">
+    tools:context=".activities.SetShipsActivity">
 
-    <com.project.seaBattle.DrawingBoard
+    <com.project.seaBattle.logics.board.DrawingBoard
         android:id="@+id/drawingBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible"
         tools:ignore="MissingConstraints" />
 
-    <com.project.seaBattle.ShipsSetter
+    <com.project.seaBattle.logics.shipsSetting.ShipsSetter
         android:id="@+id/shipsSetter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

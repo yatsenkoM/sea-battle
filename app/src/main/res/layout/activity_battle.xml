@@ -7,14 +7,14 @@
     android:background="#A8BEFF"
     tools:context=".SetRightShipsActivity">
 
-    <com.project.seaBattle.DrawingBoard
+    <com.project.seaBattle.logics.board.DrawingBoard
         android:id="@+id/drawingBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible"
         tools:ignore="MissingConstraints" />
 
-    <com.project.seaBattle.BattleEditor
+    <com.project.seaBattle.logics.battle.BattleEditor
         android:id="@+id/battleEditor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

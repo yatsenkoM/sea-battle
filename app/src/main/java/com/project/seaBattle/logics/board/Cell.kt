@@ -1,10 +1,11 @@
-package com.project.seaBattle
+package com.project.seaBattle.logics.board
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Rect
+import com.project.seaBattle.R
 
 class Cell(val imageRect: Rect, private val isHit: Boolean, context: Context) {
     private var bitmapMiss: Bitmap? = null

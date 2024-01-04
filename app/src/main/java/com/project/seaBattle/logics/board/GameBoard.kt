@@ -1,4 +1,4 @@
-package com.project.seaBattle
+package com.project.seaBattle.logics.board
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Rect
+import com.project.seaBattle.R
+import com.project.seaBattle.logics.ship.ShipOrientation
 
 class GameBoard(val side: BoardSide) {
     var leftLimit: Float = 0.0f

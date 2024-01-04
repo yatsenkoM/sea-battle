@@ -1,9 +1,9 @@
 package com.project.seaBattle
 
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.project.seaBattle.databinding.ActivitySetShipsBinding
+import com.project.seaBattle.utils.setupOnBackPressedCallback
 import com.project.seaBattle.utils.showToast
 
 class SetShipsActivity : AppCompatActivity() {
@@ -34,12 +34,8 @@ class SetShipsActivity : AppCompatActivity() {
                 showToast("Не всі кораблі встановлені", this)
             }
         }
-        val callback =
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    binding.shipsSetter.areAllShipsInstalled()
-                }
-            }
-        onBackPressedDispatcher.addCallback(this, callback)
+        setupOnBackPressedCallback {
+            showToast("Ця кнопка не працює в грі", this)
+        }
     }
 }

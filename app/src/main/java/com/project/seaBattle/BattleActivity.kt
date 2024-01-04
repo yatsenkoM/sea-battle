@@ -1,9 +1,10 @@
 package com.project.seaBattle
 
 import android.os.Bundle
-import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.project.seaBattle.databinding.ActivityBattleBinding
+import com.project.seaBattle.utils.setupOnBackPressedCallback
+import com.project.seaBattle.utils.showToast
 
 class BattleActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBattleBinding
@@ -16,7 +17,9 @@ class BattleActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
         setupGame()
-        setupOnBackPressedCallback()
+        setupOnBackPressedCallback {
+            showToast("Ця кнопка не працює в грі", this)
+        }
     }
 
     private fun setupGame() {
@@ -37,14 +40,5 @@ class BattleActivity : AppCompatActivity() {
             }
             gameInfoManager.resetAllInfo()
         }
-    }
-
-    private fun setupOnBackPressedCallback() {
-        val callback =
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                }
-            }
-        onBackPressedDispatcher.addCallback(this, callback)
     }
 }

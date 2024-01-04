@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import com.project.seaBattle.utils.showToast
 
 class SetShipsActivity : AppCompatActivity() {
     @SuppressLint("InflateParams")
@@ -30,6 +31,8 @@ class SetShipsActivity : AppCompatActivity() {
             if (shipsSetter.areAllShipsInstalled()) {
                 gameInfoManager.addShips(shipsSetter.ships, boardSide)
                 finish()
+            } else {
+                showToast("Не всі кораблі встановлені", this)
             }
         }
         val callback =

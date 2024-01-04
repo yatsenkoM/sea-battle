@@ -6,7 +6,6 @@ import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Toast
 
 class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs) {
     private var movingShip: Ship? = null
@@ -64,7 +63,6 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
     fun areAllShipsInstalled(): Boolean {
         for (ship in ships) {
             if (ship.imageRect?.let { gameBoard?.checkImgRectWithinBoard(it) } != true) {
-                Toast.makeText(context, "Не всі кораблі встановлені", Toast.LENGTH_SHORT).show()
                 return false
             }
         }

@@ -4,8 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.project.seaBattle.utils.showToast
 
 class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +18,7 @@ class StartActivity : AppCompatActivity() {
         val gameInfoManager = GameInfoManager.getInstance()
         shipsForFirstPlayerButton.setOnClickListener {
             if (gameInfoManager.leftShips.isNotEmpty()) {
-                showToast("Кораблі для першого гравця вже встановлені")
+                showToast("Кораблі для першого гравця вже встановлені", this)
             } else {
                 val intent = Intent(this, SetShipsActivity::class.java)
                 intent.putExtra("SIDE", BoardSide.LEFT.name)
@@ -27,7 +27,7 @@ class StartActivity : AppCompatActivity() {
         }
         shipsForSecondPlayerButton.setOnClickListener {
             if (gameInfoManager.rightShips.isNotEmpty()) {
-                showToast("Кораблі для другого гравця вже встановлені")
+                showToast("Кораблі для другого гравця вже встановлені", this)
             } else {
                 val intent = Intent(this, SetShipsActivity::class.java)
                 intent.putExtra("SIDE", BoardSide.RIGHT.name)
@@ -39,15 +39,11 @@ class StartActivity : AppCompatActivity() {
                 val intent = Intent(this, BattleActivity::class.java)
                 startActivity(intent)
             } else {
-                showToast("Кораблі встановлені не для всіх гравців")
+                showToast("Кораблі встановлені не для всіх гравців", this)
             }
         }
         resetInfoButton.setOnClickListener {
             gameInfoManager.resetAllInfo()
         }
-    }
-
-    private fun showToast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

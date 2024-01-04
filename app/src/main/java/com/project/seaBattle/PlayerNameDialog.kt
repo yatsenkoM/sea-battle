@@ -1,6 +1,5 @@
 package com.project.seaBattle
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -9,30 +8,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.Button
-import android.widget.EditText
 import androidx.fragment.app.DialogFragment
+import com.project.seaBattle.databinding.DialogPlayerNameLayoutBinding
 
 class PlayerNameDialog : DialogFragment() {
+    @Suppress("ktlint:standard:property-naming")
+    private var _binding: DialogPlayerNameLayoutBinding? = null
+    private val binding get() = _binding!!
     private var onNameEntered: ((name: String) -> Unit)? = null
 
-    @SuppressLint("InflateParams")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
-        val rootView = inflater.inflate(R.layout.dialog_player_name_layout, container, false)
-
-        val editTextForName: EditText = rootView.findViewById(R.id.enterName)
-
-        val saveNameButton: Button = rootView.findViewById(R.id.saveName)
-        saveNameButton.setOnClickListener {
-            onNameEntered?.invoke(editTextForName.text.toString())
+    ): View {
+        _binding = DialogPlayerNameLayoutBinding.inflate(inflater, container, false)
+        val view = binding.root
+        binding.saveName.setOnClickListener {
+            onNameEntered?.invoke(binding.enterName.text.toString())
             dismiss()
         }
+        return view
+    }
 
-        return rootView
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

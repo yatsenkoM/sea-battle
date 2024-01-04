@@ -2,21 +2,20 @@ package com.project.seaBattle
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import com.project.seaBattle.databinding.ActivityMainBinding
 import com.project.seaBattle.utils.showToast
 
 class StartActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val startBattleButton = findViewById<ImageButton>(R.id.startButton)
-        val shipsForFirstPlayerButton = findViewById<Button>(R.id.player1Button)
-        val shipsForSecondPlayerButton = findViewById<Button>(R.id.player2Button)
-        val resetInfoButton = findViewById<Button>(R.id.resetInfo)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         val gameInfoManager = GameInfoManager.getInstance()
-        shipsForFirstPlayerButton.setOnClickListener {
+        binding.player1Button.setOnClickListener {
             if (gameInfoManager.leftShips.isNotEmpty()) {
                 showToast("Кораблі для першого гравця вже встановлені", this)
             } else {
@@ -25,7 +24,7 @@ class StartActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        shipsForSecondPlayerButton.setOnClickListener {
+        binding.player2Button.setOnClickListener {
             if (gameInfoManager.rightShips.isNotEmpty()) {
                 showToast("Кораблі для другого гравця вже встановлені", this)
             } else {
@@ -34,7 +33,7 @@ class StartActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-        startBattleButton.setOnClickListener {
+        binding.startButton.setOnClickListener {
             if (gameInfoManager.leftShips.isNotEmpty() && gameInfoManager.rightShips.isNotEmpty()) {
                 val intent = Intent(this, BattleActivity::class.java)
                 startActivity(intent)
@@ -42,7 +41,7 @@ class StartActivity : AppCompatActivity() {
                 showToast("Кораблі встановлені не для всіх гравців", this)
             }
         }
-        resetInfoButton.setOnClickListener {
+        binding.resetInfo.setOnClickListener {
             gameInfoManager.resetAllInfo()
         }
     }

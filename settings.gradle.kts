@@ -15,4 +15,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "Sea Battle"
 include(":app")
- 

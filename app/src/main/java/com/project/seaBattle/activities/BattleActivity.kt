@@ -22,7 +22,7 @@ class BattleActivity : AppCompatActivity() {
         setContentView(view)
         setupGame()
         setupOnBackPressedCallback {
-            showToast("Ця кнопка не працює в грі", this)
+            showToast("This button does not work in the game", this)
         }
     }
 

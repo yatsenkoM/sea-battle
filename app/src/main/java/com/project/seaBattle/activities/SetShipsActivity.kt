@@ -35,11 +35,11 @@ class SetShipsActivity : AppCompatActivity() {
                 gameInfoManager.addShips(binding.shipsSetter.ships, boardSide)
                 finish()
             } else {
-                showToast("Не всі кораблі встановлені", this)
+                showToast("Not all ships are installed", this)
             }
         }
         setupOnBackPressedCallback {
-            showToast("Ця кнопка не працює в грі", this)
+            showToast("This button does not work in the game", this)
         }
     }
 }

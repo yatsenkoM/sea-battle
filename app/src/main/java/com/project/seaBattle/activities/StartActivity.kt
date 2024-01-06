@@ -19,7 +19,7 @@ class StartActivity : AppCompatActivity() {
         val gameInfoManager = GameInfoManager.getInstance()
         binding.player1Button.setOnClickListener {
             if (gameInfoManager.leftShips.isNotEmpty()) {
-                showToast("Кораблі для першого гравця вже встановлені", this)
+                showToast("The ships for the first player are already installed", this)
             } else {
                 val intent = Intent(this, SetShipsActivity::class.java)
                 intent.putExtra("SIDE", BoardSide.LEFT.name)
@@ -28,7 +28,7 @@ class StartActivity : AppCompatActivity() {
         }
         binding.player2Button.setOnClickListener {
             if (gameInfoManager.rightShips.isNotEmpty()) {
-                showToast("Кораблі для другого гравця вже встановлені", this)
+                showToast("The ships for the second player are already installed", this)
             } else {
                 val intent = Intent(this, SetShipsActivity::class.java)
                 intent.putExtra("SIDE", BoardSide.RIGHT.name)
@@ -40,7 +40,7 @@ class StartActivity : AppCompatActivity() {
                 val intent = Intent(this, BattleActivity::class.java)
                 startActivity(intent)
             } else {
-                showToast("Кораблі встановлені не для всіх гравців", this)
+                showToast("Ships are not installed for all players", this)
             }
         }
         binding.resetInfo.setOnClickListener {

@@ -1,4 +1,4 @@
-# Sea battle🌊
+# Sea battle
 Hi✋
 This is a modest implementation of the famous game "Sea Battle" in the Kotlin programming language.
 
@@ -13,4 +13,5 @@ Contains buttons to go to placing ships on the boards. Reset ship settings butto
 This application uses **Data Binding** to establish a relationship between user interface elements and model data. This makes it possible to automatically synchronize data changes with the visual representation, simplifying the code and improving its readability and maintainability.
 
 ---
-Thank you for checking out the initial version of the game! Your reviews will be very valuable to improve my knowledge🙂
+Thank you for checking out the initial version of the game! 
+Your reviews will be very valuable to improve my knowledge🙂

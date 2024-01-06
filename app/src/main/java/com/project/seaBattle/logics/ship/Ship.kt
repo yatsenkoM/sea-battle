@@ -9,15 +9,15 @@ import android.graphics.Rect
 import com.project.seaBattle.R
 
 class Ship(private val context: Context, resourceId: Int, private val cellSize: Int) {
-    private var bitmap: Bitmap? = null
     var currentX: Int = 0
     var currentY: Int = 0
     var startX: Int = 0
     var startY: Int = 0
     var imageRect: Rect? = null
-    private var constantForShipSize: Float = 0.0f
     var shipLength: Int = 0
     var shipPosition: ShipOrientation = ShipOrientation.HORIZONTAL
+    private var bitmap: Bitmap? = null
+    private var constantForShipSize: Float = 0.0f
     private var remainingCells: Int = 0
 
     init {

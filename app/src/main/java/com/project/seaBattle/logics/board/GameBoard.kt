@@ -23,6 +23,7 @@ class GameBoard(val side: BoardSide) {
     private var numbersImgRect: Rect? = null
     private val verticalLines = mutableListOf<Float>()
     private val horizontalLines = mutableListOf<Float>()
+    private val cellsNumberInRow: Int = 10
 
     fun setBoardLimits(context: Context) {
         val displayMetrics = context.resources.displayMetrics
@@ -40,7 +41,8 @@ class GameBoard(val side: BoardSide) {
 
     private fun calculateBoardSize(screenHeight: Float): Float {
         val indentFromTopPercentage = 0.1f
-        return screenHeight * (1 - 2 * indentFromTopPercentage) - screenHeight * indentFromTopPercentage
+        val bottomBoardIndentFromTopPercentage = 0.8f
+        return screenHeight * bottomBoardIndentFromTopPercentage - screenHeight * indentFromTopPercentage
     }
 
     private fun setLimitsAndStartX(
@@ -56,13 +58,13 @@ class GameBoard(val side: BoardSide) {
             leftLimit = centerInWidth - screenWidth * indentBoardFromCenterPercentage - boardSize
             startXForPlacementShips = (centerInWidth + screenWidth * indentBoardFromCenterPercentage).toInt()
         }
-        topLimit = screenHeight!! / 2 - boardSize * 0.1f - boardSize / 2
+        topLimit = screenHeight!! / 2 - boardSize / cellsNumberInRow - boardSize / 2
         rightLimit = leftLimit + boardSize
         bottomLimit = topLimit + boardSize
     }
 
     private fun calculateCellSize(): Int {
-        return ((rightLimit - leftLimit) / 10).toInt()
+        return ((rightLimit - leftLimit) / cellsNumberInRow).toInt()
     }
 
     private fun setImgRectForImages() {
@@ -76,7 +78,7 @@ class GameBoard(val side: BoardSide) {
     private fun createLinesForBoard() {
         val lineCountInOnePlane = 9
         val boardWidth = rightLimit - leftLimit
-        val colsSize = boardWidth / 10
+        val colsSize = boardWidth / cellsNumberInRow
         var verticalLineStartX = leftLimit
         var horizontalLineStartY = topLimit
         for (i in 0..lineCountInOnePlane) {

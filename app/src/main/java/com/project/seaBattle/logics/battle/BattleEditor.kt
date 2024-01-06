@@ -16,17 +16,17 @@ import com.project.seaBattle.logics.board.GameBoard
 import com.project.seaBattle.logics.ship.Ship
 
 class BattleEditor(context: Context, attrs: AttributeSet?) : View(context, attrs) {
-    private val pressedCells: MutableList<Cell> = mutableListOf()
+    var leftShips: MutableList<Ship>? = null
+    var rightShips: MutableList<Ship>? = null
     private var rightBoard: GameBoard? = null
     private var leftBoard: GameBoard? = null
     private var currentGameBoard: GameBoard? = null
-    var leftShips: MutableList<Ship>? = null
-    var rightShips: MutableList<Ship>? = null
     private var currentShipsForCheck: MutableList<Ship>? = null
     private var lastDamagedShip: Ship? = null
     private var currentPlayerBitmap: Bitmap? = null
     private var currentPlayerImgRect: Rect? = null
     private var onGameOver: ((loser: BoardSide) -> Unit)? = null
+    private val pressedCells: MutableList<Cell> = mutableListOf()
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -52,9 +52,7 @@ class BattleEditor(context: Context, attrs: AttributeSet?) : View(context, attrs
     }
 
     private fun initializeCurrentPlayerImg() {
-        currentPlayerBitmap = BitmapFactory.decodeResource(context.resources,
-            R.drawable.right_plays
-        )
+        currentPlayerBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.right_plays)
         currentGameBoard?.setBoardLimits(context)
         val cellSize = currentGameBoard?.cellSize
         val rightForRect = (rightBoard?.leftLimit!! - cellSize!!).toInt()
@@ -68,15 +66,11 @@ class BattleEditor(context: Context, attrs: AttributeSet?) : View(context, attrs
         if (currentGameBoard == rightBoard) {
             currentGameBoard = leftBoard
             currentShipsForCheck = leftShips
-            currentPlayerBitmap = BitmapFactory.decodeResource(context.resources,
-                R.drawable.left_plays
-            )
+            currentPlayerBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.left_plays)
         } else {
             currentGameBoard = rightBoard
             currentShipsForCheck = rightShips
-            currentPlayerBitmap = BitmapFactory.decodeResource(context.resources,
-                R.drawable.right_plays
-            )
+            currentPlayerBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.right_plays)
         }
     }
 

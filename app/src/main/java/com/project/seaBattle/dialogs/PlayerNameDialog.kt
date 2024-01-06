@@ -14,8 +14,8 @@ import com.project.seaBattle.databinding.DialogPlayerNameLayoutBinding
 class PlayerNameDialog : DialogFragment() {
     @Suppress("ktlint:standard:property-naming")
     private var _binding: DialogPlayerNameLayoutBinding? = null
-    private val binding get() = _binding!!
     private var onNameEntered: ((name: String) -> Unit)? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,

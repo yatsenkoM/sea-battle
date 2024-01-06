@@ -3,9 +3,9 @@ package com.project.seaBattle.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.project.seaBattle.logics.shipsSetting.GameInfoManager
-import com.project.seaBattle.logics.board.BoardSide
 import com.project.seaBattle.databinding.ActivityMainBinding
+import com.project.seaBattle.logics.board.BoardSide
+import com.project.seaBattle.logics.shipsSetting.GameInfoManager
 import com.project.seaBattle.utils.showToast
 
 class StartActivity : AppCompatActivity() {

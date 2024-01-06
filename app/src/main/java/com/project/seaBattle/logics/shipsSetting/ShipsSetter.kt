@@ -12,6 +12,8 @@ import com.project.seaBattle.logics.ship.Ship
 import com.project.seaBattle.logics.ship.ShipOrientation
 
 class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs) {
+    var gameBoard: GameBoard? = null
+    val ships = mutableListOf<Ship>()
     private var movingShip: Ship? = null
     private var touchX = 0f
     private var touchY = 0f
@@ -19,8 +21,6 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
     private var shipCapsizes: Boolean = false
     private var xUntilMoving = 0
     private var yUntilMoving = 0
-    var gameBoard: GameBoard? = null
-    val ships = mutableListOf<Ship>()
 
     fun initializeShips() {
         gameBoard?.setBoardLimits(context)
@@ -36,13 +36,16 @@ class ShipsSetter(context: Context, attrs: AttributeSet?) : View(context, attrs)
         count: Int,
         cellSize: Int,
     ) {
-        val startY = (gameBoard?.topLimit!! + 50f).toInt()
+        val yIndentFromBoardTop = 50f
+        val startY = (gameBoard?.topLimit!! + yIndentFromBoardTop).toInt()
         val startX = gameBoard?.startXForPlacementShips
         var distanceMultiplier = 0
         repeat(count) {
             val newShip = Ship(context, resourceId, cellSize)
-            newShip.currentY = startY + ((4 - count) * cellSize * 2)
-            if (startX != null) newShip.currentX = startX + distanceMultiplier * cellSize * (7 - count)
+            val shipTypesNumber = 4
+            newShip.currentY = startY + ((shipTypesNumber - count) * cellSize * 2)
+            val xDistanceBetweenShips = 7 - count
+            if (startX != null) newShip.currentX = startX + distanceMultiplier * cellSize * xDistanceBetweenShips
             newShip.startX = newShip.currentX
             newShip.startY = newShip.currentY
             newShip.setStartPosition()

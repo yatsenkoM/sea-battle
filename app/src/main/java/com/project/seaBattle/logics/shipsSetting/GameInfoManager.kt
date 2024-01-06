@@ -4,11 +4,11 @@ import com.project.seaBattle.logics.board.BoardSide
 import com.project.seaBattle.logics.ship.Ship
 
 class GameInfoManager private constructor() {
+    var rightPlayerName: String? = null
+    var winnerName: String? = null
     val rightShips: MutableList<Ship> = mutableListOf()
     val leftShips: MutableList<Ship> = mutableListOf()
     var leftPlayerName: String? = null
-    var rightPlayerName: String? = null
-    var winnerName: String? = null
 
     fun addShips(
         ships: MutableList<Ship>,

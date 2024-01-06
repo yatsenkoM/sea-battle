@@ -2,11 +2,11 @@ package com.project.seaBattle.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.project.seaBattle.logics.shipsSetting.GameInfoManager
-import com.project.seaBattle.logics.board.BoardSide
-import com.project.seaBattle.logics.board.GameBoard
 import com.project.seaBattle.databinding.ActivityBattleBinding
 import com.project.seaBattle.dialogs.ShowingWinnerDialog
+import com.project.seaBattle.logics.board.BoardSide
+import com.project.seaBattle.logics.board.GameBoard
+import com.project.seaBattle.logics.shipsSetting.GameInfoManager
 import com.project.seaBattle.utils.setupOnBackPressedCallback
 import com.project.seaBattle.utils.showToast
 
